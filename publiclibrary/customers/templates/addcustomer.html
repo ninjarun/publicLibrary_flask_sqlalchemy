@@ -1,0 +1,22 @@
+{% extends "layout.html" %}
+{% block title %}Add User{% endblock %}
+{% block content %}
+{% if msg %}
+<div class="alert alert-success">
+    <strong>Success!</strong> {{msg}}
+  </div>
+{% endif %}
+<h1>ADD CUSTOMER TO DATABASE</h1>
+<br>
+<form action="{{ url_for('customers.add_customer') }}" method="POST">
+    <label>Name:</label>
+    <input type="text" name="nm" required />
+    <br>
+    <label>City:</label>
+    <input type="text" name="ct" required/>
+    <br>
+    <label>Age:</label>
+    <input type="text" name="age" required/>
+    <br><input type="submit" value="submit">
+</form>
+{% endblock %}

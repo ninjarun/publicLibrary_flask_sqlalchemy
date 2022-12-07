@@ -1,0 +1,49 @@
+{% extends "layout.html" %}
+{% block title %}Find Book{% endblock %}
+{% block content %}
+<form action="{{ url_for('books.find_book') }}" method="POST">
+  <h1>FIND BOOK BY NAME</h1>
+  <p>Name:</p>
+  <input list="books" name="nm" required />
+  <datalist id="books">
+    {% for book in allbooks %}
+    <option value="{{book.name}}">
+      {% endfor %}
+  </datalist>
+  <br><input type="submit" value="Find!">
+</form>
+</br>
+
+{% if "green" in color %}
+<div class="alert alert-success">
+  <strong>Success!</strong> {{msg}}
+</div>
+{% elif "red" in color %}
+<div class="alert alert-danger">
+  <strong>Warning!</strong> {{msg}}
+</div>
+{% endif %}
+{% if flag %}
+<table class="table">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Author</th>
+      <th>Publish Year</th>
+      <th>Remove Book</th>
+    </tr>
+  </thead>
+  {% for book in books %}
+  <tr class="table-primary">
+    <td>{{book.id}}</td>
+    <td>{{book.name}}</td>
+    <td>{{book.author}}</td>
+    <td>{{book.year_published}}</td>
+    <td>{% if book.books_loans %}active loans{% else %}no active loans {% endif %}</td>
+    <td> <a class="btn btn-danger" href="/findbook/{{book.id}}" role="button">Remove</a> </td>
+  </tr>
+  {% endfor %}
+</table>
+{% endif %}
+{% endblock%}

@@ -1,0 +1,21 @@
+{% extends "layout.html" %}
+{% block title %}Add Book{% endblock %}
+{% block content %}
+{% if msg %}
+<div class="alert alert-success">
+    <strong>Success!</strong> {{msg}}
+  </div>
+{% endif %}
+<form action="{{ url_for('books.add_book') }}" name="add" method="POST">
+    <h1>ADD BOOK TO DATABASE</h1>
+    <p>Name:</p>
+    <input type="text" name="nm" />
+    <p>Author:</p>
+    <input type="text" name="auth" />
+    <p>Year Published:</p>
+    <input type="text" name="year" />
+    <p>Type:</p>
+    <input type="text" name="type" />
+    <br><input type="submit"  name="addbook" value="Add Book">
+</form>
+{% endblock %}

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock %}Public Library</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    {% block head %}{% endblock %}
+</head>
+
+<body>
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">PublicLibrary</a>
+            </div>
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="/">Home</a></li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Customers
+                        <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/addcustomer">Add New Customer</a></li>
+                        <li><a href="/findcustomer">Find Customer By Name</a></li>
+                        <li><a href="/displayall">Display All Customers</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Books
+                        <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/addbook">Add A New Book</a></li>
+                        <li><a href="/findbook">Find Book by Name</a></li>
+                        <li><a href="/displayallbooks">Display All Books</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Loans
+                        <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/newloan">Create A New Loan</a></li>
+                        <li><a href="/lateloans">Display Late Loans</a></li>
+                        <li><a href="/displayallloans">Display All Loans</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <form  action="{{url_for('core.index')}}" method="POST">
+                        <input  type="submit" value="Add Dummy Data">
+                    </form>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div id="content" class="container">
+        {% block content %}{% endblock %}
+    </div>
+    <div id="footer">
+
+        <footer style="bottom: 0; position: fixed;" class="bg-light text-center text-lg-start">
+            <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+                PublicLibrary - Yoni Oren 
+            </div>
+        </footer>
+</body>
+
+</html>

@@ -1,0 +1,47 @@
+{% extends "layout.html" %}
+{% block title %}Find Customer{% endblock %}
+{% block content %}
+<form action="{{ url_for('customers.find_customer') }}" method="POST">
+  <h1>FIND CUSTOMER BY NAME</h1>
+  <p>Name:</p>
+  <input list="customers" name="nm" required />
+  <datalist id="customers">
+    {% for customer in allcustomers %}
+    <option value="{{customer.name}}">
+    {% endfor %}
+  </datalist>
+  <br><input type="submit" value="Find!">
+</form>
+</br>
+
+{% if "green" in color %}
+<div class="alert alert-success">
+  <strong>Success!</strong> {{msg}}
+</div>
+{% elif "red" in color %}
+<div class="alert alert-danger">
+  <strong>Warning!</strong> {{msg}}
+</div>
+{% endif %}
+{% if flag %}
+<table class="table">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Age</th>
+      <th>active loans</th>
+    </tr>
+  </thead>
+  {% for name in names %}
+  <tr class="table-primary">
+    <td>{{name.id}}</td>
+    <td>{{name.name}}</td>
+    <td>{{name.age}}</td>
+    <td>{% if name.customer_loans %}active loans{% else %}no active loans {% endif %}</td>
+    <td> <a class="btn btn-danger" href="/findcustomer/{{name.id}}" role="button">Remove</a> </td>
+  </tr>
+  {% endfor %}
+</table>
+{% endif %}
+{% endblock%}

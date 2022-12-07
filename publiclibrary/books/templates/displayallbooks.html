@@ -1,0 +1,39 @@
+{% extends "layout.html" %}
+{% block title %}Display All Books{% endblock %}
+{% block content %}
+<h1>ALL BOOKS</h1>
+{% if "green" in color %}
+<div class="alert alert-success">
+  <strong>Success!</strong> {{msg}}
+</div>
+{% elif "red" in color %}
+<div class="alert alert-danger">
+  <strong>Warning!</strong> {{msg}}
+</div>
+{% endif %}
+<table class="table">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Author</th>
+      <th>Publish Year</th>
+      <th>Remove Book</th>
+    </tr>
+  </thead>
+  {% for book in books %}
+  <tr class="table-primary">
+    <td>{{book.id}}</td>
+    <td>{{book.name}}</td>
+    <td>{{book.author}}</td>
+    <td>{{book.year_published}}</td>
+    <td>{% if book.books_loans %}active loans{% else %}no active loans {% endif %}</td>
+    <td><a class="btn btn-danger" href="/displayallbooks/{{book.id}}" role="button">Remove</a></td>
+  </tr>
+  {% endfor %}
+</table>
+
+
+
+
+{% endblock %}

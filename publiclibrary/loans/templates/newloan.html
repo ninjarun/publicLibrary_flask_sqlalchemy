@@ -1,0 +1,34 @@
+{% extends "layout.html" %}
+{% block title %}New Loan{% endblock %}
+{% block content %}
+<h1>ADD NEW LOAN</h1>    
+{% if "Approved" in msg %}
+<div class="alert alert-success">
+    <strong>Success!</strong> {{msg}}
+  </div>
+  {% elif "Lent" in msg %}
+  <div class="alert alert-danger">
+    <strong>Failed!</strong> {{msg}}
+  </div>
+  {% endif %}
+<form action="{{ url_for('loans.new_loan') }}" name="add" method="POST">
+    <label>Choose a Customer:</label>
+    <select name="customer">
+        {% for cust in customers%}
+        <option name="cust_id" value="{{cust.id}}">ID: {{cust.id}} Name: {{cust.name}}</option>
+        {% endfor %}
+        
+    </select>
+
+    <br><br>
+    <label>Choose a Book:</label>
+    <select name="book">
+      {% for book in books %}
+        <option name="book_id" value="{{book.id}}">ID: {{book.id}} Name: {{book.name}}</option>
+        {% endfor %}
+    </select>
+    <br><br>
+    <input type="submit" value="Add Loan">
+</form>
+
+{% endblock %}
